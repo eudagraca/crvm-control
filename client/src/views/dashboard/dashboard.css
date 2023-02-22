@@ -202,3 +202,8 @@ a[aria-hidden="true"] {
   position: absolute;
   left: -9999px;
 }
+
+.dash-card {
+  border: 0.05em solid;
+  border-color: black !important;
+}

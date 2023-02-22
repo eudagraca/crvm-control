@@ -16,6 +16,8 @@ export function Aside() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+    // const user = localStorage.getItem("user-role");
+    // console.log(user);
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -97,9 +99,11 @@ export function Aside() {
               <li>
                 <a href="/cars">TODOS</a>
               </li>
-              <li>
-                <a href="/cars/create">NOVO</a>
-              </li>
+              <IsModOrAdmin>
+                <li>
+                  <a href="/cars/create">NOVO</a>
+                </li>
+              </IsModOrAdmin>
             </ul>
           </li>
           <li className="uk-parent">
@@ -157,7 +161,7 @@ export function Aside() {
             </li>
           </IsAdmin>
         </ul>
-        <div className="left-content-box uk-margin-top">
+        {/* <div className="left-content-box uk-margin-top">
           <h5>Daily Reports</h5>
           <div>
             <span className="uk-text-small">
@@ -185,9 +189,9 @@ export function Aside() {
               max="100"
             ></progress>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="bar-bottom">
+      {/* <div className="bar-bottom">
         <ul
           className="uk-subnav uk-flex uk-flex-center uk-child-width-1-5"
           data-uk-grid
@@ -229,7 +233,7 @@ export function Aside() {
             ></a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </aside>
   );
 }

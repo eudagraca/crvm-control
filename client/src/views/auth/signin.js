@@ -30,6 +30,7 @@ export default function SignIn() {
           const data = response.data;
           const token = data.data ? data.data.accessToken : null;
           localStorage.setItem("user", JSON.stringify(data.data));
+          localStorage.setItem("user-role", data.data.roles);
           localStorage.setItem("user-token", token);
           setTimeout(() => {
             navigate("/");

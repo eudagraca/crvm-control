@@ -4,7 +4,6 @@ import { Layout } from "../../components/layout/Layout";
 import { Aside } from "../../components/layout/AsideTab";
 import { Header } from "../../components/layout/HeaderTab";
 
-
 function DashboardLayout() {
   return (
     <div>
@@ -42,7 +41,10 @@ function DashboardLayout() {
             8.490
           </h1>
           <div className="uk-text-small">
-            <span className="uk-text-warning" data-uk-icon="icon: triangle-down">
+            <span
+              className="uk-text-warning"
+              data-uk-icon="icon: triangle-down"
+            >
               -15%
             </span>{" "}
             less than last week.
@@ -112,216 +114,50 @@ function DashboardLayout() {
         data-uk-grid
         uk-sortable="handle: .sortable-icon"
       >
-        {/* <!-- panel --> */}
-        <div className="uk-width-1-2@l">
-          <div className="uk-card uk-card-default uk-card-small uk-card-hover">
-            <div className="uk-card-header">
-              <div className="uk-grid uk-grid-small">
-                <div className="uk-width-auto">
-                  <h4>Sales Chart</h4>
-                </div>
-                <div className="uk-width-expand uk-text-right panel-icons">
-                  <a
-                    href="#"
-                    className="uk-icon-link sortable-icon"
-                    title="Move"
-                    data-uk-tooltip
-                    data-uk-icon="icon: move"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Configuration"
-                    data-uk-tooltip
-                    data-uk-icon="icon: cog"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Close"
-                    data-uk-tooltip
-                    data-uk-icon="icon: close"
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div className="uk-card-body">
-              <div className="chart-container">
-                <canvas id="chart2"></canvas>
-              </div>
-            </div>
-          </div>
+        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+          <p>
+            {" "}
+            <span
+              data-uk-icon="icon:users"
+              className="uk-margin-small-right uk-text-primary"
+            ></span>
+            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
+            <span className="uk-h5 uk-text-success uk-text-bolder">
+              Abastecimentos
+            </span>
+          </p>
         </div>
-        {/* <!-- /panel --> */}
-        {/* <!-- panel --> */}
-        <div className="uk-width-1-2@l">
-          <div className="uk-card uk-card-default uk-card-small uk-card-hover">
-            <div className="uk-card-header">
-              <div className="uk-grid uk-grid-small">
-                <div className="uk-width-auto">
-                  <h4>Predictions Chart</h4>
-                </div>
-                <div className="uk-width-expand uk-text-right panel-icons">
-                  <a
-                    href="#"
-                    className="uk-icon-link sortable-icon"
-                    title="Move"
-                    data-uk-tooltip
-                    data-uk-icon="icon: move"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Configuration"
-                    data-uk-tooltip
-                    data-uk-icon="icon: cog"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Close"
-                    data-uk-tooltip
-                    data-uk-icon="icon: close"
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div className="uk-card-body">
-              <div className="chart-container">
-                <canvas id="chart1"></canvas>
-              </div>
-            </div>
-          </div>
+
+        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+          <p>
+            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
+            <span className="uk-h4 uk-text-success uk-text-bolder">
+              Clientes
+            </span>
+          </p>
         </div>
-        {/* <!-- /panel --> */}
-        {/* <!-- panel --> */}
-        <div className="uk-width-1-1 uk-width-1-3@l uk-width-1-2@xl">
-          <div className="uk-card uk-card-default uk-card-small uk-card-hover">
-            <div className="uk-card-header">
-              <div className="uk-grid uk-grid-small">
-                <div className="uk-width-auto">
-                  <h4>Activity Chart</h4>
-                </div>
-                <div className="uk-width-expand uk-text-right panel-icons">
-                  <a
-                    href="#"
-                    className="uk-icon-link sortable-icon"
-                    title="Move"
-                    data-uk-tooltip
-                    data-uk-icon="icon: move"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Configuration"
-                    data-uk-tooltip
-                    data-uk-icon="icon: cog"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Close"
-                    data-uk-tooltip
-                    data-uk-icon="icon: close"
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div className="uk-card-body">
-              <div className="chart-container">
-                <canvas id="chart3"></canvas>
-              </div>
-            </div>
-          </div>
+
+        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+          <p>
+            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
+            <span className="uk-h4 uk-text-success uk-text-bolder">
+              Usuários
+            </span>
+          </p>
         </div>
-        {/* <!-- /panel --> */}
-        {/* <!-- panel --> */}
-        <div className="uk-width-1-2@s uk-width-1-3@l uk-width-1-4@xl">
-          <div className="uk-card uk-card-default uk-card-small uk-card-hover">
-            <div className="uk-card-header">
-              <div className="uk-grid uk-grid-small">
-                <div className="uk-width-auto">
-                  <h4>Distribution Chart</h4>
-                </div>
-                <div className="uk-width-expand uk-text-right panel-icons">
-                  <a
-                    href="#"
-                    className="uk-icon-link sortable-icon"
-                    title="Move"
-                    data-uk-tooltip
-                    data-uk-icon="icon: move"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Configuration"
-                    data-uk-tooltip
-                    data-uk-icon="icon: cog"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Close"
-                    data-uk-tooltip
-                    data-uk-icon="icon: close"
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div className="uk-card-body">
-              <div className="chart-container">
-                <canvas id="chart4"></canvas>
-              </div>
-            </div>
-          </div>
+
+        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+          <p>
+            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
+            <span className="uk-h4 uk-text-success uk-text-bolder">
+              Veículos
+            </span>
+          </p>
         </div>
-        {/* <!-- /panel --> */}
-        {/* <!-- panel --> */}
-        <div className="uk-width-1-2@s uk-width-1-3@l uk-width-1-4@xl">
-          <div className="uk-card uk-card-default uk-card-small uk-card-hover">
-            <div className="uk-card-header">
-              <div className="uk-grid uk-grid-small">
-                <div className="uk-width-auto">
-                  <h4>Population Chart</h4>
-                </div>
-                <div className="uk-width-expand uk-text-right panel-icons">
-                  <a
-                    href="#"
-                    className="uk-icon-link sortable-icon"
-                    title="Move"
-                    data-uk-tooltip
-                    data-uk-icon="icon: move"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Configuration"
-                    data-uk-tooltip
-                    data-uk-icon="icon: cog"
-                  ></a>
-                  <a
-                    href="#"
-                    className="uk-icon-link"
-                    title="Close"
-                    data-uk-tooltip
-                    data-uk-icon="icon: close"
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div className="uk-card-body">
-              <div className="chart-container">
-                <canvas id="chart5"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <!-- /panel -->  */}
       </div>
     </div>
   );
 }
-
 
 export default function Dashboard() {
   return (

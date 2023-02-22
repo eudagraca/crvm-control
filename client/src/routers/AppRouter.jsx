@@ -13,6 +13,9 @@ import UserIndex from "../views/user/Index";
 import CarDetails from "../views/cars/Details";
 import SupplyDetails from "../views/supply/Details";
 import UserDetails from "../views/user/Details";
+import IsAdmin from "../components/IsAdmin";
+import ProtectedAdminRoute from "../components/ProtectAdminRoute";
+import ProtectedAdminOrModRoute from "../components/ProtectAdminOrModRoute";
 export function AppRouter() {
   return (
     <Router basename="/">
@@ -20,14 +23,18 @@ export function AppRouter() {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/" element={<App />} />
           <Route path="cars" element={<CarIndex />} />
-          <Route path="cars/create" element={<CarCreate />} />
           <Route path="cars/:id" element={<CarDetails />} />
           <Route path="supplies/create" element={<SupplyCreate />} />
           <Route path="supplies" element={<SupplyIndex />} />
           <Route path="supplies/:id" element={<SupplyDetails />} />
+          <Route path="users/:id" element={<UserDetails />} />
+        </Route>
+        <Route path="/" element={<ProtectedAdminOrModRoute />}>
+          <Route path="cars/create" element={<CarCreate />} />
+        </Route>
+        <Route path="/" element={<ProtectedAdminRoute />}>
           <Route path="users/create" element={<UserCreate />} />
           <Route path="users/" element={<UserIndex />} />
-          <Route path="users/:id" element={<UserDetails />} />
         </Route>
         <Route
           path="/auth/signin"
