@@ -11,6 +11,7 @@ The main focus is to automate the way that the company/secretaries administratio
 
 ###### Supply Screen:
 <img width="1437" alt="image" src="https://github.com/eudagraca/crvm-control/blob/main/screenshots/supply.png">
+<img width="1437" alt="image" src="https://github.com/eudagraca/crvm-control/blob/main/screenshots/supplying.png">
 
 
 ##### Tech stack:
