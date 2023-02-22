@@ -15,10 +15,6 @@ verifyToken = (req, res, next) => {
   }
 
   jwt.verify(token, SECRET, (err, decoded) => {
-    console.log("decoded");
-
-    console.log(decoded);
-    console.log(token);
     if (err) {
       sendErrorResponse(res, 401, "Acesso não autorizado");
     }

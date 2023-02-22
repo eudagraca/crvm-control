@@ -5,7 +5,7 @@ import CarIndex from "../views/cars/Index";
 import CarCreate from "../views/cars/Create";
 import SupplyCreate from "../views/supply/Create";
 import SupplyIndex from "../views/supply/Index";
-import SignIn from "../views/auth/signin";
+import SignIn from "../views/auth/SignIn";
 import ProtectedRoute from "../components/ProtectedRoute";
 import PublicRoute from "../components/PublicRoute";
 import UserCreate from "../views/user/Create";
@@ -16,6 +16,8 @@ import UserDetails from "../views/user/Details";
 import IsAdmin from "../components/IsAdmin";
 import ProtectedAdminRoute from "../components/ProtectAdminRoute";
 import ProtectedAdminOrModRoute from "../components/ProtectAdminOrModRoute";
+import DisplayDocument from "../views/document/DisplayDocument";
+import SignOut from "../views/auth/SignOut";
 export function AppRouter() {
   return (
     <Router basename="/">
@@ -28,6 +30,8 @@ export function AppRouter() {
           <Route path="supplies" element={<SupplyIndex />} />
           <Route path="supplies/:id" element={<SupplyDetails />} />
           <Route path="users/:id" element={<UserDetails />} />
+          <Route path="document/:uri" element={<DisplayDocument />} />
+          <Route path="/auth/signout" element={<SignOut />} />
         </Route>
         <Route path="/" element={<ProtectedAdminOrModRoute />}>
           <Route path="cars/create" element={<CarCreate />} />

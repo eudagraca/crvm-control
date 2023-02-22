@@ -14,8 +14,9 @@ function IsModOrAdmin({ children }) {
     // Check if user is an moderator and set isModerator state
 
     if (user) {
+      console.log(user.roles);
       user.roles.forEach((element) => {
-        if (element === "ROLE_MOD" || element === "ROLE_ADMIN") {
+        if (element === "ROLE_MODERATOR" || element === "ROLE_ADMIN") {
           setIsModerator(true);
         }
       });

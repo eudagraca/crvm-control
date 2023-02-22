@@ -46,7 +46,7 @@ export default function SignIn() {
     <div className="uk-background-default uk-height-1-1@m uk-margin-remove-top">
       <div className="uk-section ">
         <div className="uk-container uk-height-1-1@m">
-          <h3>Sistema de Gestão </h3>
+          <h3 className="uk-text-bold uk-tex-muted uk-heading-bullet">Sistema de controle de abastecimento de viaturas </h3>
           <img
             height="10px"
             width="20%"
@@ -55,10 +55,9 @@ export default function SignIn() {
           />
 
           <div className="uk-grid-match uk-child-width-1-2@m" uk-grid="true">
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor.
+            <div className="uk-margin-top uk-padding-remove">
+              <p >
+              Seja bem-vindo! Este sistema foi desenvolvido para ajudá-lo a gerenciar as atividades da sua empresa de forma eficiente e eficaz.
               </p>
             </div>
             <div>
@@ -106,7 +105,7 @@ export default function SignIn() {
                     <input
                       id="password"
                       className="uk-input"
-                      type="text"
+                      type="password"
                       name="password"
                       placeholder="Senha"
                       aria-invalid={errors.password ? "true" : "false"}

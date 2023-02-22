@@ -15,7 +15,7 @@ function IsModerator({ children }) {
 
     if (user) {
       user.roles.forEach((element) => {
-        if (element === "ROLE_MOD" || element === "ROLE_ADMIN") {
+        if (element === "ROLE_MODERATOR" || element === "ROLE_ADMIN") {
           setIsModerator(true);
         }
       });

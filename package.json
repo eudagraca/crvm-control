@@ -19,5 +19,8 @@
     "Postgresql"
   ],
   "author": "Euclidio Venancio",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jwt-decode": "^3.1.2"
+  }
 }

@@ -5,6 +5,7 @@ const categoryRouter = require("./routes/category.route");
 const supplyRouter = require("./routes/supply.route");
 const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/user.route");
+const documentRouter = require("./routes/document.route");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { initRoles } = require("./controllers/auth.controller");
@@ -29,10 +30,11 @@ app.use("/users", userRouter);
 app.use("/cars", carRouter);
 app.use("/categories", categoryRouter);
 app.use("/supplies", supplyRouter);
+app.use("/documents", documentRouter);
 app.get("/", function (req, res) {
   console.log(req);
 });
-app.get("/roles",   [authJwt.verifyToken, authJwt.isAdmin], initRoles);
+app.get("/roles",   [authJwt.verifyToken], initRoles);
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Headers",

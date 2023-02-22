@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import { Layout } from "../../components/layout/Layout";
 import { Aside } from "../../components/layout/AsideTab";
 import { Header } from "../../components/layout/HeaderTab";
+import instance from "../../config/AxiosConfig";
+import IsModOrAdmin from "../../components/IsModOrAdmin";
 
 function DashboardLayout() {
+  const [cars, setCars] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [supplies, setSupplies] = useState([]);
+  const [error, setError] = useState({});
+
+  useEffect(() => {
+    instance
+      .get("/cars")
+      .then(function(response) {
+        setCars(response.data.data);
+      })
+      .catch(function(error) {
+        if (error.response) {
+          setError(error.response.data);
+        }
+      });
+
+    instance
+      .get("/supplies")
+      .then(function(response) {
+        setSupplies(response.data.data);
+      })
+      .catch(function(error) {
+        if (error.response) {
+          setError(error.response.data);
+        }
+      });
+
+    instance
+      .get("/users")
+      .then(function(response) {
+        setUsers(response.data.data);
+      })
+      .catch(function(error) {
+        if (error.response) {
+          setError(error.response.data);
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(cars);
+  }, [cars, error]);
+
   return (
     <div>
-      <div
+      {/* <div
         className="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl"
         data-uk-grid
       >
@@ -107,7 +153,7 @@ function DashboardLayout() {
             more than last week.
           </div>
         </div>
-      </div>
+      </div> */}
       <hr />
       <div
         className="uk-grid uk-grid-medium"
@@ -121,34 +167,45 @@ function DashboardLayout() {
               data-uk-icon="icon:users"
               className="uk-margin-small-right uk-text-primary"
             ></span>
-            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
-            <span className="uk-h5 uk-text-success uk-text-bolder">
+            <span className="uk-h3 uk-text-muted uk-text-bolder">
+              {" "}
+              {supplies ? supplies.length : 0}{" "}
+            </span>
+            <span className="uk-h4 uk-text-success uk-text-bolder">
               Abastecimentos
             </span>
           </p>
         </div>
 
-        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+        {/* <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
           <p>
             <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
             <span className="uk-h4 uk-text-success uk-text-bolder">
               Clientes
             </span>
           </p>
-        </div>
+        </div> */}
+
+        <IsModOrAdmin>
+          <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
+            <p>
+              <span className="uk-h3 uk-text-muted uk-text-bolder">
+                {" "}
+                {users ? users.length : 0}{" "}
+              </span>
+              <span className="uk-h4 uk-text-success uk-text-bolder">
+                Usuários
+              </span>
+            </p>
+          </div>
+        </IsModOrAdmin>
 
         <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
           <p>
-            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
-            <span className="uk-h4 uk-text-success uk-text-bolder">
-              Usuários
+            <span className="uk-h3 uk-text-muted uk-text-bolder">
+              {" "}
+              {cars ? cars.length : 0}{" "}
             </span>
-          </p>
-        </div>
-
-        <div className="uk-margin-right uk-card uk-card-hover uk-border-rounded uk-card-body uk-width-1-4@m dash-card">
-          <p>
-            <span className="uk-h3 uk-text-muted uk-text-bolder"> 1 </span>
             <span className="uk-h4 uk-text-success uk-text-bolder">
               Veículos
             </span>

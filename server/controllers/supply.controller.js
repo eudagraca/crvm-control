@@ -7,6 +7,10 @@ const {
 exports.create = async (req, res) => {
   let data = {};
   data = req.body;
+  const file_name = req.file.path;
+  data.primavera_file = file_name;
+  const { userId } = req;
+  data.user_id = userId;
 
   Car.findByPk(data.car_id)
     .then((car) => {
@@ -48,6 +52,7 @@ exports.findAll = (req, res) => {
   service
     .getAll()
     .then((data) => {
+      console.log(data);
       return sendSuccessResponse(res, 200, data, "Cars");
     })
     .catch((err) => {
@@ -86,5 +91,40 @@ exports.findOne = (req, res) => {
       error
     );
     return;
+  }
+};
+
+// PDF View
+exports.getDocument = async (req, res) => {
+  const filePath = req.params.primavera_file;
+  if (filePath) {
+    if (fs.existsSync(filePath)) {
+      res.contentType("application/pdf");
+      res.setHeader(
+        "Content-Type",
+        "application/pdf",
+        "Content-Disposition",
+        `inline;filename=${filePath}`
+      );
+      return fs.createReadStream(path).pipe(res);
+    } else {
+      return res.json({
+        error: {
+          status: 404,
+          stack: "Ficheiro não encontrado",
+          url: req.headers.referer,
+        },
+        message: "Ficheiro não encontrado",
+      });
+    }
+  } else {
+    return res.json({
+      error: {
+        status: 404,
+        stack: "Ficheiro não encontrado",
+        url: req.headers.referer,
+      },
+      message: "Ficheiro não encontrado",
+    });
   }
 };

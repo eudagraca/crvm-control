@@ -34,6 +34,15 @@ const Car = dbConnection.define(
         key: "id",
       },
     },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: "user_id",
+      references: {
+        model: "users",
+        key: "id",
+      },
+    },
   },
   {
     timestamps: true,

@@ -18,6 +18,7 @@ function Supply() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const [error, setErrorResponse] = useState("");
+  const [file, setFile] = useState();
 
   /*
   Setup validation
@@ -77,6 +78,10 @@ function Supply() {
     // setCar("");
   };
 
+  function handleChange(event) {
+    setFile(event.target.files[0]);
+  }
+
   //API Calls
   const onSearchSubmit = useCallback(async (term) => {
     instance
@@ -97,20 +102,40 @@ function Supply() {
 
   const postSupply = async (data, event) => {
     event.preventDefault();
-    const supplyForm = {
-      car_id: car.id,
-      primavera_id: data.primavera_id,
-      km_before: kmBefore,
-      km_actual: data.km_actual,
-      liters_supplied: data.liters_supplied,
-      value_supplied: data.value_supplied,
-      requestor: data.requestor,
-      requested_date: data.requested_date,
+    // const supplyForm = {
+    //   car_id: car.id,
+    //   primavera_id: data.primavera_id,
+    //   km_before: kmBefore,
+    //   km_actual: data.km_actual,
+    //   liters_supplied: data.liters_supplied,
+    //   value_supplied: data.value_supplied,
+    //   requestor: data.requestor,
+    //   requested_date: data.requested_date,
+    //   primavera_file: file,
+    // };
+    const formData = new FormData();
+    formData.append("car_id", car.id);
+    formData.append("primavera_id", data.primavera_id);
+    formData.append("km_before", kmBefore);
+    formData.append("km_actual", data.km_actual);
+    formData.append("liters_supplied", data.liters_supplied);
+    formData.append("value_supplied", data.value_supplied);
+    formData.append("requestor", data.requestor);
+    formData.append("requested_date", data.requested_date);
+    formData.append("primavera_file", file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     };
     instance
-      .post(`/supplies`, supplyForm)
+      .post(`/supplies`, formData, config)
       .then(function(response) {
-        navigate("/supplies");
+        navigate("/supplies", {
+          state: {
+            messageAlert: `Abastecimento registado com sucesso!`,
+          },
+        });
       })
       .catch(function(error) {
         if (error.response) {
@@ -173,7 +198,11 @@ function Supply() {
       )}
       <div>{car ? <CarDetail car={car} /> : null}</div>
       <div>
-        <form className="uk-grid" onSubmit={handleSubmit(postSupply)}>
+        <form
+          className="uk-grid"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(postSupply)}
+        >
           <div className="uk-width-1-3@s uk-margin">
             <label className="uk-margin">Nº da requisição</label>
             <input
@@ -235,7 +264,7 @@ function Supply() {
             <label className="uk-margin-bottom">Litros a abastecer</label>
             <input
               className="uk-input"
-              type="text"
+              type="number"
               name="liters_supplied"
               placeholder="Litros a abastecer"
               pattern="[0-9]{1,2}([\.][0-9]{1,2})?"
@@ -254,7 +283,7 @@ function Supply() {
             <label className="uk-margin-bottom">Valor abastecido</label>
             <input
               className="uk-input"
-              type="text"
+              type="number"
               name="value_supplied"
               placeholder="Valor abastecido"
               aria-label="value_supplied"
@@ -303,6 +332,24 @@ function Supply() {
             <p className="uk-text-danger uk-text-small uk-margin-remove-top">
               {errors.requested_date ? errors.requested_date.message : ""}
             </p>
+          </div>
+          <div className="uk-width-1-2@s uk-margin-top">
+            <div className="js-upload uk-placeholder uk-text-center">
+              <span uk-icon="icon: cloud-upload"></span>
+              <span className="uk-text-middle uk-text-small">
+                Adicione a aprovação da requisição
+              </span>
+              <div className="uk-form-custom">
+                <input
+                  type="file"
+                  name="primavera_file"
+                  onChange={handleChange}
+                />
+                <span className="uk-link uk-margin-left uk-text-small">
+                  Seleccionar
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="uk-width-1-1@s uk-margin">

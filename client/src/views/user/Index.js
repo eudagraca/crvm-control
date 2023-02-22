@@ -48,9 +48,7 @@ function User() {
         (typeof item.registration === "string" &&
           item.registration.toLowerCase().includes(query)) ||
         (typeof item.engine === "string" &&
-          item.engine.toLowerCase().includes(query)) ||
-        (typeof item.category.name === "string" &&
-          item.category.name.toLowerCase().includes(query))
+          item.engine.toLowerCase().includes(query))
       );
     });
     setFilteredData(filtered);

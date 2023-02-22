@@ -25,6 +25,16 @@ const Supply = dbConnection.define("supplies", {
       key: "id",
     },
   },
+  primavera_file: {type: DataTypes.STRING, allowNull: true},
+  user_id: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    field: "user_id",
+    references: {
+      model: "users",
+      key: "id",
+    },
+  },
 });
 
 module.exports = { Supply };

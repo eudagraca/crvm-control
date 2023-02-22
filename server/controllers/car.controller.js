@@ -8,7 +8,9 @@ const {
 } = require("../service/responses.service");
 
 exports.create = (req, res) => {
-  const { body } = req;
+  let { body } = req;
+  const { userId } = req;
+  body.user_id = userId;
   const category = Category.findByPk(body.category_id);
 
   if (category != null) {
@@ -36,8 +38,6 @@ exports.findAll = (req, res) => {
   let parsedQs = querystring.parse(url.parse(req.originalUrl).query);
 
   if (rank == "1") {
-    console.log(rank);
-
     carService
       .getAllCarWithSupplies(parsedQs.registration, limit, rank)
       .then((data) => {

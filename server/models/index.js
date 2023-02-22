@@ -36,6 +36,22 @@ User.belongsToMany(Role, {
   otherKey: "role_id",
 });
 
+Car.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+// User.belongsTo(Car, {
+//   foreignKey: "car_id",
+// });
+
+Supply.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
+// User.belongsTo(Supply, {
+//   foreignKey: "supply_id",
+// });
+
 module.exports = {
   Car,
   Category,

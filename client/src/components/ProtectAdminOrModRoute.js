@@ -7,7 +7,7 @@ const useAuth = () => {
   const user = localStorage.getItem("user-role");
   if (!userToken || userToken === "undefined") {
     return false;
-  } else if ((user === "ROLE_ADMIN" || user === "ROLE_MOD") && userToken) {
+  } else if ((user === "ROLE_ADMIN" || user === "ROLE_MODERATOR") && userToken) {
     const decodedToken = jwt_decode(userToken);
     return decodedToken.exp > Date.now() / 1000;
   } else {

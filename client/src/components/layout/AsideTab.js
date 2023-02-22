@@ -13,10 +13,10 @@ import IsModOrAdmin from "../IsModOrAdmin";
 // import {faT} from "@fortawesome/free-regular-svg-icons"
 export function Aside() {
   const [user, setUser] = useState({});
+  const [userId, setUserId] = useState({});
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    // const user = localStorage.getItem("user-role");
     // console.log(user);
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -28,12 +28,18 @@ export function Aside() {
   return (
     <aside id="left-col" className="uk-light uk-visible@m">
       <div className="left-logo uk-flex uk-flex-middle">
-        <img className="custom-logo" src="img/dashboard-logo.svg" alt="" />
+        <img
+          className="custom-logo"
+          src="https://crvm.co.mz/assets/img/slide/a.png"
+          alt=""
+        />
       </div>
       <div className="left-content-box  content-box-dark">
         <img
-          src="img/avatar.svg"
+          src="https://cdn.iconscout.com/icon/premium/png-512-thumb/avatar-56-116417.png?f=avif&w=512"
           alt=""
+          width="100px"
+          height="100px"
           className="uk-border-circle profile-img"
         />
         <h4 className="uk-text-center uk-margin-remove-vertical text-light">
@@ -46,7 +52,7 @@ export function Aside() {
             className="uk-text-small uk-text-muted uk-display-block uk-text-center"
             data-uk-icon="icon: triangle-down; ratio: 0.7"
           >
-            {user ? ROLES[user.roles] : ""} <br />
+            {user ? ROLES[user.roles] : ""}
           </a>
           {/* <!-- user dropdown --> */}
           <div
@@ -54,31 +60,16 @@ export function Aside() {
             data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150"
           >
             <ul className="uk-nav uk-dropdown-nav uk-text-left">
+              <li className="uk-nav-divider"></li>
               <li>
-                <a href="">
-                  <span data-uk-icon="icon: info"></span> Summary
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <span data-uk-icon="icon: refresh"></span> Edit
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  <span data-uk-icon="icon: settings"></span> Configuration
+                <a href={`/users/${user.id}`}>
+                  <span data-uk-icon="icon: image"></span> Perfil
                 </a>
               </li>
               <li className="uk-nav-divider"></li>
               <li>
-                <a href="">
-                  <span data-uk-icon="icon: image"></span> Your Data
-                </a>
-              </li>
-              <li className="uk-nav-divider"></li>
-              <li>
-                <a href="">
-                  <span data-uk-icon="icon: sign-out"></span> Sign Out
+                <a href="/auth/signout">
+                  <span data-uk-icon="icon: sign-out"></span> Sair
                 </a>
               </li>
             </ul>
@@ -123,7 +114,7 @@ export function Aside() {
               </li>
             </ul>
           </li>
-          <IsModOrAdmin>
+          {/* <IsModOrAdmin>
             <li className="uk-parent">
               <a href="">
                 <div>
@@ -140,7 +131,7 @@ export function Aside() {
                 </li>
               </ul>
             </li>
-          </IsModOrAdmin>
+          </IsModOrAdmin> */}
           <IsAdmin>
             <li className="uk-parent">
               <a href="">

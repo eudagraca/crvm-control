@@ -7,12 +7,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import EmptyBox from "../../components/Empty";
 import { useForm } from "react-hook-form";
-import { containsValue } from "../../utils/Utils";
+import containsValue from "../../utils/Utils";
+import jwt_decode from "jwt-decode";
 
 function User() {
   let { id } = useParams();
   const [user, setUser] = useState();
-  const navigate = useNavigate();
+  const [token, setToken] = useState("");
   const [roles, setRoles] = useState([]);
   const [error, setError] = useState({});
   const [selectedValue, setSelectedValue] = useState("");
@@ -46,10 +47,16 @@ function User() {
       .then(function(response) {
         setSelectedValue(response.data.roles && response.data.roles[0].id);
         setUser(response.data);
+        let token = localStorage.getItem("user-token");
+        if (token) {
+          //TODO Create single point to get Token and avoid repetition 
+          setToken(jwt_decode(token));
+        }
       });
   }, []);
 
-  useEffect(() => {}, [user, roles, error]);
+  useEffect(() => {
+  }, [user, roles, error]);
 
   const handleClick = () => {
     setShowDiv(!showDiv);
@@ -84,8 +91,9 @@ function User() {
   return (
     <div className="uk-section uk-section-muted">
       <div className="uk-container">
-        <h3 className="uk-heading-bullet uk-text-bolder"> Dados do usuário</h3>
-
+        <h3 className="uk-heading-bullet uk-text-bolder">
+          {user ? (user.id === token.id ? "Meu Perfil" : "Dados do usuário") : ""}
+        </h3>
         <div>
           <div
             id="user-details"

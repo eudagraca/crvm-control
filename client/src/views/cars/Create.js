@@ -74,7 +74,7 @@ function Car() {
         </li>
       </ul>
 
-      <h3 className="uk-heading-bullet uk-text-bold">Registo de Veículos</h3>
+      <h3 className="uk-heading-bullet uk-text-bold">Registo de Veículo</h3>
 
       <div>
         {error.message ? (

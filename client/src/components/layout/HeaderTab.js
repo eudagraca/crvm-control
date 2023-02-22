@@ -23,14 +23,14 @@ export function Header() {
               <a className="uk-logo" href="">
                 <img
                   className="custom-logo"
-                  src="img/dashboard-logo-white.svg"
+                  src="https://crvm.co.mz/assets/img/slide/a.png"
                   alt=""
                 />
               </a>
             </div>
             <ul className="uk-navbar-nav uk-visible@m">
               <li>
-                <a href="">CRVM</a>
+                <a href="/">CRVM</a>
               </li>
             </ul>
           </div>
@@ -52,7 +52,7 @@ export function Header() {
               </li>
               <li>
                 <a
-                  href=""
+                  href="/auth/signout"
                   data-uk-icon="icon:  sign-out"
                   title="Sign Out"
                   data-uk-tooltip="Sair"

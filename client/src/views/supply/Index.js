@@ -25,6 +25,7 @@ function SupplyPage() {
       .then(function(response) {
         setSupplies(response.data.data);
         setFilteredData(response.data.data);
+        console.log(response.data.data);
       })
       .catch(function(error) {
         if (error.response) {
@@ -41,15 +42,14 @@ function SupplyPage() {
 
   // Function to handle filtering
   const handleFilter = (event) => {
+    console.log(event.target.value);
     const query = event.target.value.toLowerCase();
-    const filtered = supplies.filter((item) => {
+    const filtered = filteredData.filter((item) => {
       return (
         (typeof item.registration === "string" &&
           item.registration.toLowerCase().includes(query)) ||
-        (typeof item.engine === "string" &&
-          item.engine.toLowerCase().includes(query)) ||
-        (typeof item.category.name === "string" &&
-          item.category.name.toLowerCase().includes(query))
+        (typeof item.primavera_id === "string" &&
+          item.primavera_id.includes(query))
       );
     });
     setFilteredData(filtered);
@@ -73,6 +73,7 @@ function SupplyPage() {
   useEffect(() => {
     // reset the current page to 1 whenever the filtered data changes
     setCurrentPage(1);
+    console.log(filteredData);
   }, [filteredData]);
 
   return (
@@ -95,6 +96,14 @@ function SupplyPage() {
       ) : (
         ""
       )}
+      {messageAlert ? (
+        <div className="uk-alert-success uk-margin-small-left" uk-alert="true">
+          <a className="uk-alert-close" uk-close="true"></a>
+          <p className="uk-margin-left">{messageAlert}</p>
+        </div>
+      ) : (
+        ""
+      )}
       <input
         className="uk-align-right uk-input uk-width-1-4@m"
         type="text"
@@ -106,12 +115,12 @@ function SupplyPage() {
         <thead>
           <tr className="uk-text-left">
             <th className="uk-text-align-left">Cod. Primavera</th>
-            <th>Dia</th>
+            <th>Viatura</th>
             <th>KM Percorida</th>
             <th>Litros</th>
-            <th>Valor</th>
+            <th>Processado por</th>
             <th>Requisitante</th>
-            <th>Viatura</th>
+            <th>Dia</th>
             <th>Opção</th>
           </tr>
         </thead>
@@ -120,12 +129,12 @@ function SupplyPage() {
             return (
               <tr key={index}>
                 <td>{supply.primavera_id}</td>
-                <td>{format(new Date(supply.requested_date), "dd-MM-yyyy")}</td>
+                <td>{supply.car.registration}</td>
                 <td>{supply.km_traveled}</td>
                 <td>{supply.liters_supplied}</td>
-                <td>{supply.value_supplied}</td>
+                <td>{supply.user.fullName}</td>
                 <td>{supply.requestor}</td>
-                <td>{supply.car.registration}</td>
+                <td>{format(new Date(supply.requested_date), "dd-MM-yyyy")}</td>
                 <td>
                   <a
                     href={"/supplies/" + supply.id}

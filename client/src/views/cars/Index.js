@@ -23,6 +23,7 @@ function CarPage() {
       .then(function(response) {
         setCars(response.data.data);
         setFilteredData(response.data.data);
+        console.log(response.data.data);
       })
       .catch(function(error) {
         if (error.response) {
@@ -115,7 +116,7 @@ function CarPage() {
             <th className="uk-text-align-left">Matrícula</th>
             <th>Cilindrada</th>
             <th>Categoria</th>
-            <th>Tipo</th>
+            <th>Registado por</th>
             <th>Opção</th>
           </tr>
         </thead>
@@ -126,7 +127,7 @@ function CarPage() {
                 <td>{car.registration}</td>
                 <td>{car.engine}</td>
                 <td>{car.category.name}</td>
-                <td>{car.type}</td>
+                <td>{car.user.fullName}</td>
                 <td>
                   <a
                     href={"/cars/" + car.id}

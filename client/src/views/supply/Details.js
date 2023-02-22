@@ -29,6 +29,7 @@ function Supply() {
       .then((response) => response.data)
       .then(function(response) {
         setSupply(response.data);
+        // console.log(encodeURIComponent(response.data.primavera_file));
       });
   }, []);
 
@@ -48,12 +49,20 @@ function Supply() {
   return (
     <div className="uk-section uk-section-muted">
       <div className="uk-container">
-      <h3 className="uk-heading-bullet uk-text-bolder uk-margin-remove-bottom">
+        <h3 className="uk-heading-bullet uk-text-bolder uk-margin-remove-bottom">
           {" "}
           Abastecimento do veículo
         </h3>
         <p className="uk-margin-medium-left">
           {supply ? supply.car.registration : ""}
+          <a
+          target="_blank"
+            href={`/document/${encodeURIComponent(supply ? supply.primavera_file: '')}`}
+            // DisplayDocument
+            className="uk-button  uk-button-small  uk-button-secondary uk-margin-left"
+          >
+            Requisição Primavera <sapn uk-icon="file-pdf"></sapn>
+          </a>
         </p>
         <hr />
 
@@ -105,7 +114,9 @@ function Supply() {
             </div>
             <div className="uk-margin-small-bottom">
               <p className="uk-margin-small uk-text-bold">Quantidade gasta:</p>
-              <span>{supply ? supply.liters_spent : "NA"} Litros</span>
+              <span>
+                {supply ? supply.liters_spent.toFixed(1) : "NA"} Litros
+              </span>
             </div>
             <div className="uk-margin-small-bottom">
               <p className="uk-margin-small uk-text-bold">Requisitante</p>

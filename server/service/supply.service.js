@@ -1,7 +1,16 @@
-const { Supply, Car } = require("../models");
+const { Supply, Car, User } = require("../models");
 
 exports.getAll = () => {
-  const supplies = Supply.findAll({ include: Car });
+  const supplies = Supply.findAll({
+    include: [
+      {
+        model: Car,
+      },
+      {
+        model: User,
+      },
+    ],
+  });
   return supplies;
 };
 

@@ -18,6 +18,6 @@ const containsValue = (source, values = []) => {
 
 module.exports = {
   API_URL,
-  ROLES,
   containsValue,
+  ROLES
 };

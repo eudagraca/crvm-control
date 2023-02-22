@@ -1,6 +1,6 @@
 const { QueryTypes, Op } = require("sequelize");
 const { dbConnection } = require("../config/db");
-const { Car, Category, Supply } = require("../models");
+const { Car, Category, Supply, User } = require("../models");
 
 exports.getAllCars = async (registration, limit) => {
   let cars = [];
@@ -11,12 +11,12 @@ exports.getAllCars = async (registration, limit) => {
         registration: { [Op.iLike]: `%${registration}%` },
       },
       limit: limit,
-      include: [{ model: Category }, { model: Supply }],
+      include: [{ model: Category }, { model: Supply }, { model: User }],
     });
   } else {
     cars = Car.findAll({
       limit: limit,
-      include: [{ model: Category }, { model: Supply }],
+      include: [{ model: Category }, { model: Supply }, { model: User }],
     });
   }
   return cars;

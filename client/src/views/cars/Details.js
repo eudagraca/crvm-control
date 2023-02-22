@@ -106,7 +106,7 @@ function Car() {
 
             <dl className="uk-description-list">
               {car ? (
-                car.supplies ? (
+                car.supplies.length >0  ? (
                   car.supplies.map((supply, index) => {
                     return (
                       <div className="uk-margin-small-bottom " key={index}>

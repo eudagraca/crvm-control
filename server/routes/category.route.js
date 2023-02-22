@@ -5,7 +5,7 @@ const categoryRouter = express.Router();
 
 categoryRouter.get(
   "",
-  [authJwt.verifyToken, authJwt.isAdmin],
+  [authJwt.verifyToken],
   category.findAll
 );
 
