@@ -16,7 +16,7 @@ import IsAdmin from "../components/IsAdmin";
 import ProtectedAdminRoute from "../components/ProtectAdminRoute";
 import ProtectedAdminOrModRoute from "../components/ProtectAdminOrModRoute";
 import DisplayDocument from "../views/document/DisplayDocument";
-import SignOut from "../views/auth/Logout";
+import SignOut from "../views/auth/LogOut";
 import SignIn from "../views/auth/Login"
 export function AppRouter() {
   return (
